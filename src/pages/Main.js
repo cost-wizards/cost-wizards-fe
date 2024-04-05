@@ -1,9 +1,34 @@
 import React from 'react';
 
-import Home from './Home';
+import Login from './Login';
+import { Flex, Layout, Typography } from 'antd';
+import Title from 'antd/es/skeleton/Title';
 
 const Main = () => {
-	return <Home />;
+	const layoutStyle = {
+		height: '100vh',
+		display: 'block',
+		overflow: 'hidden',
+	};
+
+	const flexLayout = {
+		height: '100%',
+	};
+	return (
+		<Layout style={layoutStyle}>
+			<Typography>
+				<Title>Cost Wizards</Title>
+			</Typography>
+			<Flex
+				vertical
+				align='center'
+				justify='center'
+				style={flexLayout}
+			>
+				<Login />
+			</Flex>
+		</Layout>
+	);
 };
 
 export default Main;
