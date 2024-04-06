@@ -22,19 +22,19 @@ const AccountDetailCards = (props) => {
       <AccountListItem
         imgName={AccountName}
         title={"Account Name"}
-        value={data.data?.name || "N/A"}
+        value={data?.data?.name || "N/A"}
       />
 
       <AccountListItem
         imgName={NumberInstances}
         title={"No. of instances"}
-        value={data.ec2_count || 0}
+        value={data?.ec2_count || 0}
       />
 
       <AccountListItem
         imgName={CurrentCost}
         title={"Current Cost"}
-        value={`$ ${data.total_ec2_cost || 0}`}
+        value={`$ ${data?.total_ec2_cost || 0}`}
       />
     </Card>
   );
