@@ -75,6 +75,7 @@
 .lf-table {
 	border: 1px solid #ddd;
 	border-radius: 8px;
+	width: 100%;
 }
 
 .lf-table__head-row {
