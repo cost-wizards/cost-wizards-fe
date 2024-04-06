@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Login from './Login';
-import { Flex, Layout, Typography } from 'antd';
-import Title from 'antd/es/skeleton/Title';
+import { Layout } from 'antd';
 
 const Main = () => {
 	const layoutStyle = {
@@ -11,9 +10,6 @@ const Main = () => {
 		overflow: 'hidden',
 	};
 
-	const flexLayout = {
-		height: '100%',
-	};
 	return (
 		<Layout style={layoutStyle}>
 			<Login />

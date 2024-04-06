@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, Col, Form, Input, Row, Typography } from 'antd';
+import { Button, Col, Form, Input, Row, Typography } from 'antd';
 import LoginImage from '../assets/images/login-image.png';
 const onFinish = (values) => {
 	console.log('Success:', values);
@@ -11,6 +11,7 @@ const Login = () => {
 	const colLayoutStyle = {
 		height: '100vh',
 	};
+
 	const layoutStyle = {
 		display: 'block',
 		height: '100%',
@@ -28,6 +29,10 @@ const Login = () => {
 
 	const titleLayout = {
 		justifySelf: 'flex-start',
+	};
+
+	const titleFontWeightStyle = {
+		fontWeight: '700',
 	};
 
 	const { Title, Paragraph } = Typography;
@@ -51,7 +56,12 @@ const Login = () => {
 				style={flexLayout}
 			>
 				<div style={titleLayout}>
-					<Title level={2}>Login</Title>
+					<Title
+						level={2}
+						style={titleFontWeightStyle}
+					>
+						Login
+					</Title>
 					<Paragraph>Sign in with your username and password.</Paragraph>
 				</div>
 

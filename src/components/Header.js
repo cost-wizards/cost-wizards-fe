@@ -1,10 +1,24 @@
 import React from 'react';
-import { Flex } from "antd";
+import Logo from '../assets/images/logo.png';
 
 const Header = () => {
-	return (<Flex gap='horizontal'>
-    <Button>
-  </Flex>);
+	const headerLayoutStyle = {
+		display: 'flex',
+		padding: '20px 40px',
+		background: 'white',
+		width: '100%',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	};
+	return (
+		<div style={headerLayoutStyle}>
+			<img
+				src={Logo}
+				alt='Logo of our product'
+			/>
+			<div></div>
+		</div>
+	);
 };
 
 export default Header;
