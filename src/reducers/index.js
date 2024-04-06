@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import testAlert from "./testReducer";
+import recommendation from "./recommendation";
 
 const appReducer = combineReducers({
-  test: testAlert,
+  recommendation
 });
 
 export default appReducer;

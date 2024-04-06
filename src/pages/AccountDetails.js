@@ -62,7 +62,7 @@ const AccountDetails = () => {
             />
 
             <CardOutlined
-              totalNumber="$ 4000.00"
+              totalNumber="$ 0"
               name="Monthly Cost"
               subtitle="Current monthly charges"
             />
@@ -74,9 +74,9 @@ const AccountDetails = () => {
             />
 
             <CardOutlined
-              totalNumber="$ 2300.00"
+              totalNumber="$ 0"
               name="Estimated Cost Savings"
-              subtitle="42% saving/month"
+              subtitle="saving/month"
             />
           </Flex>
 
@@ -96,7 +96,11 @@ const AccountDetails = () => {
           </div>
 
           <Flex align="center" justify="space-between" gap="24px" style={{ marginTop: "32px" }}>
-            <AccountDetailInstanceListing isLoading={isTableDataLoading} data={tableData} locationId={id} />
+            <AccountDetailInstanceListing
+              isLoading={isTableDataLoading}
+              data={tableData}
+              locationId={id}
+            />
           </Flex>
         </Col>
       </Row>

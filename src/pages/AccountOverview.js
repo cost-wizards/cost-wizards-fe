@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import AccountDetailCards from "../components/AccountDetailCards";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardOutlined from "../components/CardOutlined";
 import Loading from "../components/Loading";
 
@@ -22,11 +22,20 @@ const AccountOverview = () => {
     setIsModalOpen(true);
   };
 
+  const [optRun, setOptRun] = useState(0);
+  const [saving, setSaving] = useState(0);
   const [accountId, setAccountId] = useState(null);
 
   const handleOk = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      setOptRun(data?.[0].recommendation_count || 0);
+      setSaving(data?.[0].total_savings || 0);
+    }
+  }, [data]);
 
   const renderAccountList = () => {
     if (isLoading) return <Loading />;
@@ -89,15 +98,15 @@ const AccountOverview = () => {
             />
 
             <CardOutlined
-              totalNumber="25"
+              totalNumber={optRun}
               name="Optimizations Run"
               subtitle="25 optimization remaining"
             />
 
             <CardOutlined
-              totalNumber="$ 2300.00"
+              totalNumber={`$ ${saving}`}
               name="Estimated Cost Savings"
-              subtitle="42% saving/month"
+              subtitle="Saving/month"
             />
           </Flex>
 
@@ -123,7 +132,13 @@ const AccountOverview = () => {
             </Flex>
           </div>
 
-          <Flex align="center" justify="flex-start" wrap="wrap" gap="24px" style={{ marginTop: "32px" }}>
+          <Flex
+            align="center"
+            justify="flex-start"
+            wrap="wrap"
+            gap="24px"
+            style={{ marginTop: "32px" }}
+          >
             {renderAccountList()}
           </Flex>
         </Col>
