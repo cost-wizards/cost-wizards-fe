@@ -10,6 +10,12 @@ const InstanceRecommendation = () => {
 			title: <a href='/account-overview'>Account Overview</a>,
 		},
 		{
+			title: <a href='/account/1/details'>Leapfrog Nepal</a>,
+		},
+		{
+			title: <a href='/instance/1/details'>Instance 1</a>,
+		},
+		{
 			title: <a href=''>Instance Recommendations</a>,
 		},
 	];
@@ -32,12 +38,12 @@ const InstanceRecommendation = () => {
 						Instance 1
 					</Title>
 
-          <div className="instance">
-            <div className="chart"></div>
-            <div className="chart"></div>
-          </div>
+					<div className='instance'>
+						<div className='chart'></div>
+						<div className='chart'></div>
+					</div>
 
-          <div className="instance-table"></div>
+					<div className='instance-table'></div>
 				</Col>
 			</Row>
 		</div>

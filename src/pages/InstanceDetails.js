@@ -35,6 +35,9 @@ const InstanceDetails = () => {
 			title: <a href='/account-overview'>Account Overview</a>,
 		},
 		{
+			title: <a href='/account/1/details'>Leapfrog Nepal</a>,
+		},
+		{
 			title: <a href=''>{data?.name}</a>,
 		},
 	];
