@@ -7,6 +7,8 @@ import { ConfigProvider } from 'antd';
 
 import reportWebVitals from './reportWebVitals';
 import AccountSetup from './pages/AccountSetup';
+import AccountOverview from './pages/AccountOverview';
+import AccountDetails from './pages/AccountDetails';
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
 	{
 		path: '/account-setup',
 		element: <AccountSetup />,
+	},
+	{
+		path: '/account-overview',
+		element: <AccountOverview />,
+	},
+	{
+		path: '/account-details',
+		element: <AccountDetails />,
 	},
 ]);
 
