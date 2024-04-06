@@ -9,7 +9,7 @@ const Loading = () => {
 		>
 			<Spin
 				size='large'
-				colorPrimary='#038e43'
+				colorprimary='#038e43'
 			/>
 		</Flex>
 	);

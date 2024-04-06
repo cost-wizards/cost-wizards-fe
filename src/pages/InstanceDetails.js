@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { Typography, Flex, Row, Col, Button } from "antd";
 import InstanceCard from "../components/InstanceCard";
-import { useInstanceDetailQuery } from "../query/useInstanceQuery";
+import { useInstanceDetailQuery, useInstanceStatQuery } from "../query/useInstanceQuery";
+import { CPUUtilization } from "./CPUUtilization";
+import { MemoryUtilization } from "./MemoryUtilization";
+import Loading from "../components/Loading";
+import { Cumulative } from "./Cumulative";
 
 const InstanceDetails = () => {
   const { Title } = Typography;
@@ -11,6 +15,12 @@ const InstanceDetails = () => {
   const { id } = useParams();
 
   const { isLoading, data } = useInstanceDetailQuery({
+    payload: {
+      id,
+    },
+  });
+
+  const { isLoading: isChartLoading, data: chartData } = useInstanceStatQuery({
     payload: {
       id,
     },
@@ -30,9 +40,56 @@ const InstanceDetails = () => {
                 fontWeight: "600",
               }}
             >
-              Instance 1
+              {data?.name}
             </Title>
-            <div>Charts</div>
+            <div className="chart-flex">
+              <div style={{ width: "33%" }}>
+                <CPUUtilization data={chartData?.cpu || []} isLoading={isChartLoading} />
+
+                <Title
+                  level={5}
+                  style={{
+                    fontSize: "16px",
+                    lineHeight: "32px",
+                    fontWeight: "600",
+                    marginLeft: "20px",
+                  }}
+                >
+                  CPU Utilization
+                </Title>
+              </div>
+
+              <div style={{ width: "33%" }}>
+                <MemoryUtilization data={chartData?.memory || []} isLoading={isChartLoading} />
+
+                <Title
+                  level={5}
+                  style={{
+                    fontSize: "16px",
+                    lineHeight: "32px",
+                    fontWeight: "600",
+                    marginLeft: "20px",
+                  }}
+                >
+                  Memory Utilization
+                </Title>
+              </div>
+              <div style={{ width: "33%" }}>
+                <Cumulative data={chartData?.cumulative_price || []} isLoading={isChartLoading} />
+
+                <Title
+                  level={5}
+                  style={{
+                    fontSize: "16px",
+                    lineHeight: "32px",
+                    fontWeight: "600",
+                    marginLeft: "20px",
+                  }}
+                >
+                  Cumulative Cost
+                </Title>
+              </div>
+            </div>
           </div>
 
           <Title

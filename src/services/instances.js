@@ -13,3 +13,10 @@ export const fetchInstanceDetail = async (id) => {
   const { data } = await http.get(url);
   return data;
 };
+
+export const fetchInstanceStats = async (id) => {
+  const url = `instance/${id}/stats`;
+
+  const { data } = await http.get(url);
+  return data;
+};
