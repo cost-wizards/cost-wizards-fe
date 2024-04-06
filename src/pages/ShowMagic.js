@@ -20,7 +20,7 @@ const ShowMagic = () => {
 
 				<h3>Casting spells</h3>
 
-				<p>Brewing some portion! Casting some spells!</p>
+				<p>Brewing some portions! Casting some spells!</p>
 			</div>
 		</>
 	);
