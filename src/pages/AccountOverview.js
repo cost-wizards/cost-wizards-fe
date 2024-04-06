@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import AccountDetailCards from '../components/AccountDetailCards';
 import React, { useState } from 'react';
 import CardOutlined from '../components/CardOutlined';
+import Loading from '../components/Loading';
 
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -26,7 +27,7 @@ const AccountOverview = () => {
 	};
 
 	const renderAccountList = () => {
-		if (isLoading) return <div> Loading </div>;
+		if (isLoading) return <Loading />;
 
 		return data?.map((d) => {
 			return <AccountDetailCards data={d} />;
