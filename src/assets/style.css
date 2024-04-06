@@ -128,3 +128,14 @@
 .setup-instance-btn {
 	margin-left: -50% !important;
 }
+
+.instance {
+	display: flex;
+	width: 100%;
+	gap: 16px;
+}
+
+.instance .chart {
+	box-shadow: 0 4px 16px rgba(45, 55, 72, 15%);
+	border-radius: 8px;
+}
