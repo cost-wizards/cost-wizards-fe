@@ -1,92 +1,123 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import Header from "../components/Header";
-import CardOutlined from "../components/CardOutlined";
-import AccountDetailCards from "../components/AccountDetailCards";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
+import CardOutlined from '../components/CardOutlined';
+import AccountDetailCards from '../components/AccountDetailCards';
+import BreadCrumbs from '../components/BreadCrumbs';
 
-import { Typography, Row, Col, Flex, Button } from "antd";
-import { useAccountDetailQuery } from "../query/useAccountQuery";
-import { AccountDetailInstanceListing } from "./AccountDetailInstanceListing";
-import { useInstancesForAccountQuery } from "../query/useInstanceQuery";
-import Loading from "../components/Loading";
+import { Typography, Row, Col, Flex, Button } from 'antd';
+import { useAccountDetailQuery } from '../query/useAccountQuery';
+import { AccountDetailInstanceListing } from './AccountDetailInstanceListing';
+import { useInstancesForAccountQuery } from '../query/useInstanceQuery';
+import Loading from '../components/Loading';
 
 const AccountDetails = () => {
-  const { Title } = Typography;
+	const { Title } = Typography;
 
-  const { id } = useParams();
+	const { id } = useParams();
 
-  const { isLoading, data } = useAccountDetailQuery({ payload: { id } });
+	const { isLoading, data } = useAccountDetailQuery({ payload: { id } });
 
-  const { isLoading: isTableDataLoading, data: tableData } = useInstancesForAccountQuery({
-    payload: { id },
-  });
+	const { isLoading: isTableDataLoading, data: tableData } =
+		useInstancesForAccountQuery({
+			payload: { id },
+		});
 
-  const titleStyle = {
-    fontWeight: "700",
-  };
+	const titleStyle = {
+		fontWeight: '700',
+	};
 
-  return (
-    <div>
-      <Header />
+	const breadcrumbItems = [
+		{
+			title: <a href='/account-overview'>Account Overview</a>,
+		},
+		{
+			title: <a href=''>{data?.name}</a>,
+		},
+	];
 
-      <Row align="center">
-        <Col span={18}>
-          <Title level={2} style={titleStyle}>
-            AWS Accounts Details
-          </Title>
+	return (
+		<div>
+			<Header />
 
-          <div className="account-detail-card">
-            {isLoading ? <Loading /> : <AccountDetailCards data={data || {}} />}
-          </div>
+			<Row align='center'>
+				<Col span={18}>
+					<BreadCrumbs items={breadcrumbItems} />
+					<Title
+						level={2}
+						style={titleStyle}
+					>
+						AWS Accounts Details
+					</Title>
 
-          <Flex gap="middle" align="start" style={{ marginTop: "32px" }}>
-            <CardOutlined
-              totalNumber={data?.ec2_count || 0}
-              name="AWS instances"
-              subtitle="Total AWS instances in your account."
-            />
+					<div className='account-detail-card'>
+						{isLoading ? <Loading /> : <AccountDetailCards data={data || {}} />}
+					</div>
 
-            <CardOutlined
-              totalNumber="$ 4000.00"
-              name="Monthly Cost"
-              subtitle="Current monthly charges"
-            />
+					<Flex
+						gap='middle'
+						align='start'
+						style={{ marginTop: '32px' }}
+					>
+						<CardOutlined
+							totalNumber={data?.ec2_count || 0}
+							name='AWS instances'
+							subtitle='Total AWS instances in your account.'
+						/>
 
-            <CardOutlined
-              totalNumber={data?.optimization_runs}
-              name="Optimizations Run"
-              subtitle="25 optimization remaining"
-            />
+						<CardOutlined
+							totalNumber='$ 4000.00'
+							name='Monthly Cost'
+							subtitle='Current monthly charges'
+						/>
 
-            <CardOutlined
-              totalNumber="$ 2300.00"
-              name="Estimated Cost Savings"
-              subtitle="42% saving/month"
-            />
-          </Flex>
+						<CardOutlined
+							totalNumber={data?.optimization_runs}
+							name='Optimizations Run'
+							subtitle='25 optimization remaining'
+						/>
 
-          <div className="your-account">
-            <Flex align="center" justify="space-between" style={{ marginTop: "32px" }}>
-              <Title
-                level={2}
-                style={{
-                  fontSize: "24px",
-                  lineHeight: "32px",
-                  fontWeight: "700",
-                }}
-              >
-                Instance Details
-              </Title>
-            </Flex>
-          </div>
+						<CardOutlined
+							totalNumber='$ 2300.00'
+							name='Estimated Cost Savings'
+							subtitle='42% saving/month'
+						/>
+					</Flex>
 
-          <Flex align="center" justify="space-between" gap="24px" style={{ marginTop: "32px" }}>
-            <AccountDetailInstanceListing isLoading={isTableDataLoading} data={tableData} />
-          </Flex>
-        </Col>
-      </Row>
-    </div>
-  );
+					<div className='your-account'>
+						<Flex
+							align='center'
+							justify='space-between'
+							style={{ marginTop: '32px' }}
+						>
+							<Title
+								level={2}
+								style={{
+									fontSize: '24px',
+									lineHeight: '32px',
+									fontWeight: '700',
+								}}
+							>
+								Instance Details
+							</Title>
+						</Flex>
+					</div>
+
+					<Flex
+						align='center'
+						justify='space-between'
+						gap='24px'
+						style={{ marginTop: '32px' }}
+					>
+						<AccountDetailInstanceListing
+							isLoading={isTableDataLoading}
+							data={tableData}
+						/>
+					</Flex>
+				</Col>
+			</Row>
+		</div>
+	);
 };
 
 export default AccountDetails;

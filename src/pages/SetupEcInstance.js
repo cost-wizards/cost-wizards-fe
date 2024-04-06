@@ -69,18 +69,34 @@ const SetupEcInstance = (props) => {
         )}
       </div>
 
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-  );
+				<Form.Item
+					name='4'
+					valuePropName='checked'
+					wrapperCol={{
+						offset: 8,
+						span: 16,
+					}}
+				>
+					<Checkbox>i_104 ( instance name)</Checkbox>
+				</Form.Item>
+			</div>
+
+			<Form.Item
+				wrapperCol={{
+					offset: 8,
+					span: 16,
+				}}
+			>
+				<Button
+					type='primary'
+					htmlType='submit'
+					className='setup-instance-btn'
+				>
+					Submit
+				</Button>
+			</Form.Item>
+		</Form>
+	);
 };
 
 export default SetupEcInstance;
