@@ -11,8 +11,9 @@ import AccountOverview from "./pages/AccountOverview";
 import AccountDetails from "./pages/AccountDetails";
 import InstanceDetails from "./pages/InstanceDetails";
 
-import "../src/assets/style.css";
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import "../src/assets/style.css";
 
 import store from "./store";
 
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
     element: <AccountOverview />,
   },
   {
-    path: "/account-details",
+    path: "/account/:id/details",
     element: <AccountDetails />,
   },
   {
