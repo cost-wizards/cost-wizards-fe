@@ -25,12 +25,16 @@ const AccountDetailCards = (props) => {
         backgroundColor: "#F5F5F5",
       }}
     >
-      <AccountListItem imgName={AccountName} title={"Account Name"} value={data?.name || "N/A"} />
+      <AccountListItem
+        imgName={AccountName}
+        title={"Account Name"}
+        value={data?.data?.name || data?.name || "N/A"}
+      />
 
       <AccountListItem
         imgName={NumberInstances}
         title={"No. of instances"}
-        value={data?.instance_count || 0}
+        value={data?.ec2_count || data?.instance_count || 0}
       />
 
       <AccountListItem

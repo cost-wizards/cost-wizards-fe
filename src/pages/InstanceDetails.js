@@ -1,16 +1,20 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import Header from "../components/Header";
 import { Typography, Flex, Row, Col, Button } from "antd";
 import InstanceCard from "../components/InstanceCard";
 import { useInstanceDetailQuery, useInstanceStatQuery } from "../query/useInstanceQuery";
 import { CPUUtilization } from "./CPUUtilization";
 import { MemoryUtilization } from "./MemoryUtilization";
-import Loading from "../components/Loading";
 import { Cumulative } from "./Cumulative";
 
-const InstanceDetails = () => {
+import { useLLM } from "../query/useLLM";
+
+const InstanceDetails = (props) => {
   const { Title } = Typography;
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const locationId = searchParams.get("locationId");
 
   const { id } = useParams();
 
@@ -23,6 +27,13 @@ const InstanceDetails = () => {
   const { isLoading: isChartLoading, data: chartData } = useInstanceStatQuery({
     payload: {
       id,
+    },
+  });
+
+  const { refetch, isLoading: isLLMLoading } = useLLM({
+    payload: {
+      instanceId: id,
+      locationId,
     },
   });
 
@@ -114,7 +125,13 @@ const InstanceDetails = () => {
                   monthly charges on AWS. If you don’t, get ready to start believing now.
                 </span>
 
-                <Button style={{ background: "#038E43", color: "white", margin: "16px 0px" }}>✨PERFORM MAGIC</Button>
+                <Button
+                  style={{ background: "#038E43", color: "white", margin: "16px 0px" }}
+                  onClick={refetch}
+                  loading={isLLMLoading}
+                >
+                  ✨PERFORM MAGIC
+                </Button>
 
                 <span className="magic-text">
                   Click to explore your instance optimization options with our book of spells and a

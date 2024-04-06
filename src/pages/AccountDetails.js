@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import CardOutlined from "../components/CardOutlined";
 import AccountDetailCards from "../components/AccountDetailCards";
+import BreadCrumbs from "../components/BreadCrumbs";
 
-import { Typography, Row, Col, Flex, Button } from "antd";
+import { Typography, Row, Col, Flex } from "antd";
 import { useAccountDetailQuery } from "../query/useAccountQuery";
 import { AccountDetailInstanceListing } from "./AccountDetailInstanceListing";
 import { useInstancesForAccountQuery } from "../query/useInstanceQuery";
@@ -28,7 +29,15 @@ const AccountDetails = () => {
   if (isLoading) {
     return <Loading />;
   }
-  console.log(tableData);
+
+  const breadcrumbItems = [
+    {
+      title: <a href="/account-overview">Account Overview</a>,
+    },
+    {
+      title: <a href="">{data?.data?.name}</a>,
+    },
+  ];
 
   return (
     <div>
@@ -36,21 +45,18 @@ const AccountDetails = () => {
 
       <Row align="center">
         <Col span={18}>
+          <BreadCrumbs items={breadcrumbItems} />
           <Title level={2} style={titleStyle}>
             AWS Accounts Details
           </Title>
 
           <div className="account-detail-card">
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <AccountDetailCards data={data || {}} count={tableData?.length || 0} />
-            )}
+            {isLoading ? <Loading /> : <AccountDetailCards data={data || {}} />}
           </div>
 
           <Flex gap="middle" align="start" style={{ marginTop: "32px" }}>
             <CardOutlined
-              totalNumber={tableData?.length || 0}
+              totalNumber={data?.ec2_count || 0}
               name="AWS instances"
               subtitle="Total AWS instances in your account."
             />
@@ -90,7 +96,7 @@ const AccountDetails = () => {
           </div>
 
           <Flex align="center" justify="space-between" gap="24px" style={{ marginTop: "32px" }}>
-            <AccountDetailInstanceListing isLoading={isTableDataLoading} data={tableData} />
+            <AccountDetailInstanceListing isLoading={isTableDataLoading} data={tableData} locationId={id} />
           </Flex>
         </Col>
       </Row>

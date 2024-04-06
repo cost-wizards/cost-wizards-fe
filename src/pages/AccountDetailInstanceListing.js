@@ -4,7 +4,7 @@ import Status from "../components/Status";
 import Table from "../components/Table";
 import { useNavigate } from "react-router-dom";
 
-export const AccountDetailInstanceListing = ({ isLoading, data }) => {
+export const AccountDetailInstanceListing = ({ isLoading, data, locationId }) => {
   let navigate = useNavigate();
   const columns = useMemo(
     () => [
@@ -44,7 +44,7 @@ export const AccountDetailInstanceListing = ({ isLoading, data }) => {
   );
 
   const onRowClick = (data) => {
-    navigate(`/instance/${data.id}/details`);
+    navigate(`/instance/${data.id}/details?locationId=${locationId}`);
   };
 
   if (isLoading) {

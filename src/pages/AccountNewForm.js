@@ -106,7 +106,7 @@ const AccountNewForm = () => {
       </Form.Item>
 
       <Form.Item style={{ marginTop: "12px" }}>
-        <Button type="submit" htmlType="submit" className="" loading={isLoading}>
+        <Button type="primary" htmlType="submit" className="" loading={isLoading}>
           Submit
         </Button>
       </Form.Item>
