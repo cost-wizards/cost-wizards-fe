@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import CardOutlined from '../components/CardOutlined';
 import AccountDetailCards from '../components/AccountDetailCards';
 
+import AccountNewForm from './AccountNewForm';
+
 import { PlusOutlined } from '@ant-design/icons';
 
-import { Typography, Row, Col, Flex, Button } from 'antd';
+import { Typography, Row, Col, Flex, Button, Modal } from 'antd';
 
 const AccountOverview = () => {
 	const { Title } = Typography;
 
 	const titleStyle = {
 		fontWeight: '700',
+	};
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const showModal = () => {
+		setIsModalOpen(true);
+	};
+	const handleOk = () => {
+		setIsModalOpen(false);
+	};
+	const handleCancel = () => {
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -76,6 +90,7 @@ const AccountOverview = () => {
 							<Button
 								icon={<PlusOutlined />}
 								style={{ background: '#038E43', color: 'white' }}
+								onClick={showModal}
 							>
 								Add New Button
 							</Button>
@@ -94,6 +109,17 @@ const AccountOverview = () => {
 					</Flex>
 				</Col>
 			</Row>
+			<Modal
+				title='Add New Account'
+				open={isModalOpen}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={[]}
+			>
+				<div style={{ marginTop: '20px' }}>
+					<AccountNewForm />
+				</div>
+			</Modal>
 		</div>
 	);
 };

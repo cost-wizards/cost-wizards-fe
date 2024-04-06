@@ -21,8 +21,14 @@ const AccountListItem = (props) => {
 	};
 
 	return (
-		<div style={flexLayoutStyle}>
-			<div style={parentFlexStyle}>
+		<div
+			style={flexLayoutStyle}
+			className='account-list'
+		>
+			<div
+				style={parentFlexStyle}
+				className='account-list-item'
+			>
 				<img
 					src={imgName}
 					alt='Account name'
@@ -40,6 +46,7 @@ const AccountListItem = (props) => {
 			</div>
 			{value && (
 				<span
+					className='account-list-value'
 					style={{
 						fontWeight: 700,
 						fontSize: '16px',

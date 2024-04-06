@@ -9,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import AccountSetup from './pages/AccountSetup';
 import AccountOverview from './pages/AccountOverview';
 import AccountDetails from './pages/AccountDetails';
+import InstanceDetails from './pages/InstanceDetails';
+
+import '../src/assets/style.css';
 
 const router = createBrowserRouter([
 	{
@@ -26,6 +29,10 @@ const router = createBrowserRouter([
 	{
 		path: '/account-details',
 		element: <AccountDetails />,
+	},
+	{
+		path: '/instance-details',
+		element: <InstanceDetails />,
 	},
 ]);
 

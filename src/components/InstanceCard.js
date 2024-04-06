@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Typography } from 'antd';
+import { Card } from 'antd';
 
 import AccountListItem from '../components/AccountListItem';
 import Status from './Status';
@@ -12,8 +12,7 @@ import StatusIcon from '../assets/images/status.svg';
 import NumberInstances from '../assets/images/numberinstances.svg';
 import EstimatedSavings from '../assets/images/estimated-savings.svg';
 
-const AccountDetailCards = (props) => {
-	const { data } = props;
+const InstanceCard = () => {
 	return (
 		<Card
 			style={{
@@ -25,13 +24,13 @@ const AccountDetailCards = (props) => {
 		>
 			<AccountListItem
 				imgName={AccountName}
-				title={'Account Name'}
-				value='i8Labs'
+				title={'Name'}
+				value='Leapfrog Nepal'
 			/>
 
 			<AccountListItem
 				imgName={NumberInstances}
-				title={'No. of instances'}
+				title={'ID'}
 				value='5'
 			/>
 
@@ -49,14 +48,8 @@ const AccountDetailCards = (props) => {
 
 			<AccountListItem
 				imgName={CurrentCost}
-				title={'Current Cost'}
+				title={'Cost per hour'}
 				value='$1500/month'
-			/>
-
-			<AccountListItem
-				imgName={EstimatedSavings}
-				title={'Estimated savings'}
-				value='$200/month'
 			/>
 
 			<AccountListItem
@@ -68,4 +61,4 @@ const AccountDetailCards = (props) => {
 	);
 };
 
-export default AccountDetailCards;
+export default InstanceCard;
