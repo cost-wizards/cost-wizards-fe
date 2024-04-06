@@ -9,7 +9,6 @@ import NumberInstances from "../assets/images/numberinstances.svg";
 
 const AccountDetailCards = (props) => {
   const { data } = props;
-  console.log(data);
 
   return (
     <Card

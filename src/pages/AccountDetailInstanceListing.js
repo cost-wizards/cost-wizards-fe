@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import Loading from "../components/Loading";
 import Status from "../components/Status";
 import Table from "../components/Table";
 
@@ -39,6 +40,10 @@ export const AccountDetailInstanceListing = ({ isLoading, data }) => {
     ],
     [],
   );
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return <Table data={data || []} columns={columns} isLoading={isLoading} />;
 };

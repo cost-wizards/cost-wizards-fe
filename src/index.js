@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 		element: <AccountOverview />,
 	},
 	{
-		path: '/account-details/:id',
+		path: '/account/:id/details',
 		element: <AccountDetails />,
 	},
 	{

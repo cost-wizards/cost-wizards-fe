@@ -8,6 +8,7 @@ import { Typography, Row, Col, Flex, Button } from "antd";
 import { useAccountDetailQuery } from "../query/useAccountQuery";
 import { AccountDetailInstanceListing } from "./AccountDetailInstanceListing";
 import { useInstancesForAccountQuery } from "../query/useInstanceQuery";
+import Loading from "../components/Loading";
 
 const AccountDetails = () => {
   const { Title } = Typography;
@@ -35,7 +36,7 @@ const AccountDetails = () => {
           </Title>
 
           <div className="account-detail-card">
-            {isLoading ? <div> loading</div> : <AccountDetailCards data={data} />}
+            {isLoading ? <Loading /> : <AccountDetailCards data={data || {}} />}
           </div>
 
           <Flex gap="middle" align="start" style={{ marginTop: "32px" }}>
