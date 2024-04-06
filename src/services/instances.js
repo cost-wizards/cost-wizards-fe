@@ -20,3 +20,10 @@ export const fetchInstanceStats = async (id) => {
   const { data } = await http.get(url);
   return data;
 };
+
+export const fetchInstances = async (id) => {
+  const url = `account/${id}/available-instances`;
+
+  const { data } = await http.get(url);
+  return data;
+};

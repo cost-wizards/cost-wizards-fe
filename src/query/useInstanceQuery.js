@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import {
   fetchInstanceDetail,
   fetchInstanceForAccount,
+  fetchInstances,
   fetchInstanceStats,
 } from "../services/instances";
 
@@ -37,6 +38,19 @@ export const useInstanceStatQuery = ({ payload }) => {
   const { id } = payload;
 
   const query = useQuery(queryKey, async () => fetchInstanceStats(id));
+
+  return {
+    ...query,
+  };
+};
+
+export const useAvailableInstancesQuery = ({ payload, enabled }) => {
+  const queryKey = ["instances-list", payload];
+  const { id } = payload;
+
+  const query = useQuery(queryKey, async () => await fetchInstances(id), {
+    enabled,
+  });
 
   return {
     ...query,
