@@ -1,91 +1,163 @@
-import Header from "../components/Header";
-import CardOutlined from "../components/CardOutlined";
-import AccountDetailCards from "../components/AccountDetailCards";
+import Header from '../components/Header';
+import AccountDetailCards from '../components/AccountDetailCards';
+import React, { useState } from 'react';
+import CardOutlined from '../components/CardOutlined';
 
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined } from '@ant-design/icons';
 
-import { Typography, Row, Col, Flex, Button } from "antd";
-
-import { useAccountListQuery } from "../query/useAccountQuery";
+import { useAccountListQuery } from '../query/useAccountQuery';
+import { Typography, Row, Col, Flex, Button, Modal } from 'antd';
+import AccountNewForm from './AccountNewForm';
+import SetupEcInstance from './SetupEcInstance';
 
 const AccountOverview = () => {
-  const { Title } = Typography;
+	const { Title } = Typography;
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isEcModalOpen, setEcIsModalOpen] = useState(false);
 
-  const { isLoading, data } = useAccountListQuery();
+	const { isLoading, data } = useAccountListQuery();
+	// handle modal for Add Account
+	const showModal = () => {
+		setIsModalOpen(true);
+	};
 
-  const titleStyle = {
-    fontWeight: "700",
-  };
+	const handleOk = () => {
+		setIsModalOpen(false);
+	};
 
-  const renderAccountList = () => {
-    if (isLoading) return <div> Loading </div>;
+	const renderAccountList = () => {
+		if (isLoading) return <div> Loading </div>;
 
-    return data.map((d) => {
-      return <AccountDetailCards data={d} />;
-    });
-  };
+		return data?.map((d) => {
+			return <AccountDetailCards data={d} />;
+		});
+	};
 
-  return (
-    <div>
-      <Header />
+	const handleCancel = () => {
+		setIsModalOpen(false);
+	};
 
-      <Row align="center">
-        <Col span={18}>
-          <Title level={2} style={titleStyle}>
-            AWS Accounts Overview
-          </Title>
+	// handle modal for Setup EC2 Instance
+	const showEcModal = () => {
+		setEcIsModalOpen(true);
+		setIsModalOpen(false);
+	};
 
-          <Flex gap="middle" align="start" style={{ marginTop: "32px" }}>
-            <CardOutlined
-              totalNumber="3"
-              name="Connected Accounts"
-              subtitle="Your linked AWS accounts"
-            />
+	const handleEcOk = () => {
+		setEcIsModalOpen(false);
+	};
 
-            <CardOutlined
-              totalNumber="$ 4000.00"
-              name="Monthly Cost"
-              subtitle="Current monthly charges"
-            />
+	const handleEcCancel = () => {
+		setEcIsModalOpen(false);
+	};
 
-            <CardOutlined
-              totalNumber="25"
-              name="Optimizations Run"
-              subtitle="25 optimization remaining"
-            />
+	const titleStyle = {
+		fontWeight: '700',
+	};
 
-            <CardOutlined
-              totalNumber="$ 2300.00"
-              name="Estimated Cost Savings"
-              subtitle="42% saving/month"
-            />
-          </Flex>
+	return (
+		<div>
+			<Header />
 
-          <div className="your-account">
-            <Flex align="center" justify="space-between" style={{ marginTop: "32px" }}>
-              <Title
-                level={2}
-                style={{
-                  fontSize: "24px",
-                  lineHeight: "32px",
-                  fontWeight: "700",
-                }}
-              >
-                Your Accounts
-              </Title>
-              <Button icon={<PlusOutlined />} style={{ background: "#038E43", color: "white" }}>
-                Add New Button
-              </Button>
-            </Flex>
-          </div>
+			<Row align='center'>
+				<Col span={18}>
+					<Title
+						level={2}
+						style={titleStyle}
+					>
+						AWS Accounts Overview
+					</Title>
 
-          <Flex align="center" justify="space-between" gap="24px" style={{ marginTop: "32px" }}>
-            {renderAccountList()}
-          </Flex>
-        </Col>
-      </Row>
-    </div>
-  );
+					<Flex
+						gap='middle'
+						align='start'
+						style={{ marginTop: '32px' }}
+					>
+						<CardOutlined
+							totalNumber='3'
+							name='Connected Accounts'
+							subtitle='Your linked AWS accounts'
+						/>
+
+						<CardOutlined
+							totalNumber='$ 4000.00'
+							name='Monthly Cost'
+							subtitle='Current monthly charges'
+						/>
+
+						<CardOutlined
+							totalNumber='25'
+							name='Optimizations Run'
+							subtitle='25 optimization remaining'
+						/>
+
+						<CardOutlined
+							totalNumber='$ 2300.00'
+							name='Estimated Cost Savings'
+							subtitle='42% saving/month'
+						/>
+					</Flex>
+
+					<div className='your-account'>
+						<Flex
+							align='center'
+							justify='space-between'
+							style={{ marginTop: '32px' }}
+						>
+							<Title
+								level={2}
+								style={{
+									fontSize: '24px',
+									lineHeight: '32px',
+									fontWeight: '700',
+								}}
+							>
+								Your Accounts
+							</Title>
+							<Button
+								icon={<PlusOutlined />}
+								style={{ background: '#038E43', color: 'white' }}
+								onClick={showModal}
+							>
+								Add New Button
+							</Button>
+						</Flex>
+					</div>
+
+					<Flex
+						align='center'
+						justify='space-between'
+						gap='24px'
+						style={{ marginTop: '32px' }}
+					>
+						{renderAccountList()}
+					</Flex>
+				</Col>
+			</Row>
+
+			{/* Modal for New Account */}
+			<Modal
+				title='Basic Modal'
+				open={isModalOpen}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={[]}
+			>
+				<AccountNewForm showEcModal={showEcModal} />
+			</Modal>
+
+			{/* Modal for Setting up EC2 Instance */}
+			<Modal
+				title='Setup EC2 Instances'
+				open={isEcModalOpen}
+				onOk={handleEcOk}
+				onCancel={handleEcCancel}
+				footer={[]}
+			>
+				<SetupEcInstance />
+			</Modal>
+		</div>
+	);
 };
 
 export default AccountOverview;

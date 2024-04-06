@@ -8,23 +8,12 @@ const onFinishFailed = (errorInfo) => {
 	console.log('Failed:', errorInfo);
 };
 
-const AccountNewForm = () => {
+const AccountNewForm = (props) => {
 	const [formLayout, setFormLayout] = useState('vertical');
+	const { showEcModal } = props;
 	const onFormLayoutChange = ({ layout }) => {
 		setFormLayout(layout);
 	};
-
-	const formItemLayout =
-		formLayout === 'horizontal'
-			? {
-					labelCol: {
-						span: 4,
-					},
-					wrapperCol: {
-						span: 14,
-					},
-			  }
-			: null;
 
 	return (
 		<Form
@@ -119,6 +108,7 @@ const AccountNewForm = () => {
 					type='primary'
 					htmlType='submit'
 					className=''
+					onClick={showEcModal}
 				>
 					Submit
 				</Button>
