@@ -22,10 +22,6 @@ const router = createBrowserRouter([
     element: <Main />,
   },
   {
-    path: "/account-setup",
-    element: <AccountSetup />,
-  },
-  {
     path: "/account-overview",
     element: <AccountOverview />,
   },
@@ -38,7 +34,6 @@ const router = createBrowserRouter([
     element: <InstanceDetails />,
   },
 ]);
-
 
 export const queryClient = new QueryClient({
   defaultOptions: {

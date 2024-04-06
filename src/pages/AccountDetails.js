@@ -25,6 +25,11 @@ const AccountDetails = () => {
     fontWeight: "700",
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+  console.log(tableData);
+
   return (
     <div>
       <Header />
@@ -36,12 +41,16 @@ const AccountDetails = () => {
           </Title>
 
           <div className="account-detail-card">
-            {isLoading ? <Loading /> : <AccountDetailCards data={data || {}} />}
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <AccountDetailCards data={data || {}} count={tableData?.length || 0} />
+            )}
           </div>
 
           <Flex gap="middle" align="start" style={{ marginTop: "32px" }}>
             <CardOutlined
-              totalNumber={data?.ec2_count || 0}
+              totalNumber={tableData?.length || 0}
               name="AWS instances"
               subtitle="Total AWS instances in your account."
             />

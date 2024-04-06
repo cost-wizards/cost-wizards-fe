@@ -5,7 +5,6 @@ import Table from "../components/Table";
 import { useNavigate } from "react-router-dom";
 
 export const AccountDetailInstanceListing = ({ isLoading, data }) => {
-
   let navigate = useNavigate();
   const columns = useMemo(
     () => [
@@ -19,7 +18,7 @@ export const AccountDetailInstanceListing = ({ isLoading, data }) => {
       },
       {
         Header: `Instance Type`,
-        sortField: "instance_type",
+        accessor: "instance_type",
       },
       {
         Header: `CPU`,

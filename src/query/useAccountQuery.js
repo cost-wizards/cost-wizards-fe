@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { createAccount, fetchAccountDetail, fetchAccounts } from "../services/account";
 
 export const useAccountListQuery = () => {
@@ -27,8 +27,13 @@ export const useAccountDetailQuery = ({ payload }) => {
 };
 
 export const useAccountCreationMutation = ({ onSuccess, onError }) => {
+  const queryClient = useQueryClient();
+
   const { mutate, isLoading } = useMutation(createAccount, {
-    onSuccess,
+    onSuccess: () => {
+      onSuccess();
+      queryClient.invalidateQueries("account-list");
+    },
     onError,
   });
 

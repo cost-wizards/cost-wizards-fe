@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { useAccountCreationMutation } from "../query/useAccountQuery";
+import { useNavigate } from "react-router-dom";
 
-const AccountNewForm = (props) => {
+const AccountNewForm = () => {
   const [formLayout, setFormLayout] = useState("vertical");
-  const { showEcModal } = props;
+
+  const navigate = useNavigate();
 
   const { mutate, isLoading } = useAccountCreationMutation({
-    onSuccess: (data) => {
-      showEcModal(data.data);
+    onSuccess: () => {
+      navigate("/account-overview");
     },
   });
 

@@ -59,6 +59,12 @@ const AccountOverview = () => {
     fontWeight: "700",
   };
 
+  const monthlyCost = () => {
+    const sum =
+      data?.map((d) => d.total_cost_for_ec2)?.reduce((partialSum, a) => partialSum + a, 0) || 0;
+    return sum;
+  };
+
   return (
     <div>
       <Header />
@@ -71,13 +77,13 @@ const AccountOverview = () => {
 
           <Flex gap="middle" align="start" style={{ marginTop: "32px" }}>
             <CardOutlined
-              totalNumber="3"
+              totalNumber={data?.length || 0}
               name="Connected Accounts"
               subtitle="Your linked AWS accounts"
             />
 
             <CardOutlined
-              totalNumber="$ 4000.00"
+              totalNumber={`$ ${monthlyCost()}`}
               name="Monthly Cost"
               subtitle="Current monthly charges"
             />
@@ -117,7 +123,7 @@ const AccountOverview = () => {
             </Flex>
           </div>
 
-          <Flex align="center" justify="space-between" gap="24px" style={{ marginTop: "32px" }}>
+          <Flex align="center" justify="flex-start" wrap="wrap" gap="24px" style={{ marginTop: "32px" }}>
             {renderAccountList()}
           </Flex>
         </Col>
