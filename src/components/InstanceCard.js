@@ -19,7 +19,7 @@ const InstanceCard = ({ data, isLoading }) => {
   return (
     <Card
       style={{
-        width: "400px",
+        width: "50%",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#F5F5F5",
@@ -32,6 +32,7 @@ const InstanceCard = ({ data, isLoading }) => {
       <AccountListItem imgName={RAM} title={"Instance Type"} value={data.instance_type} />
 
       <AccountListItem imgName={RAM} title={"RAM"} value={data.instance_memory} />
+
       <AccountListItem
         imgName={RAM}
         title={"Network Performance"}

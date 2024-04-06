@@ -51,7 +51,7 @@ const AccountListItem = (props) => {
 						fontWeight: 700,
 						fontSize: '16px',
 						alignSelf: 'flex-end',
-						width: '40%',
+						width: '80%',
 					}}
 				>
 					{value}

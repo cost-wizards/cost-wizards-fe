@@ -114,7 +114,7 @@ const InstanceDetails = () => {
                   monthly charges on AWS. If you don’t, get ready to start believing now.
                 </span>
 
-                <Button style={{ background: "#038E43", color: "white" }}>✨PERFORM MAGIC</Button>
+                <Button style={{ background: "#038E43", color: "white", margin: "16px 0px" }}>✨PERFORM MAGIC</Button>
 
                 <span className="magic-text">
                   Click to explore your instance optimization options with our book of spells and a
