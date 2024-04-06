@@ -27,7 +27,7 @@ const CardOutlined = (props) => {
 				style={{
 					color: 'rgba(0,0,0,65%)',
 					fontSize: '14px',
-					fontWeight: '300',
+					fontWeight: '400',
 				}}
 			>
 				{subtitle}

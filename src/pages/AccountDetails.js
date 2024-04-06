@@ -26,6 +26,10 @@ const AccountDetails = () => {
 						AWS Accounts Details
 					</Title>
 
+					<div className='account-detail-card'>
+						<AccountDetailCards />
+					</div>
+
 					<Flex
 						gap='middle'
 						align='start'

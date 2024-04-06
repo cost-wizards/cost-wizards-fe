@@ -11,8 +11,8 @@ import { useAccountListQuery } from "../query/useAccountQuery";
 const AccountOverview = () => {
   const { Title } = Typography;
 
-  const {data, isLoading} = useAccountListQuery()
-  console.log(data, isLoading)
+  const { data, isLoading } = useAccountListQuery();
+  console.log(data, isLoading);
 
   const titleStyle = {
     fontWeight: "700",

@@ -1,15 +1,15 @@
 import axios from "axios";
-import config from "config";
+
+const BASE_URL = process.env.BASE_URL;
 
 /**
  * Http Utility.
  */
 const http = axios.create({
-  baseURL: config.baseURI,
+  baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: REQUEST_TIMEOUT.TIME,
 });
 
 export { http };
