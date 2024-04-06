@@ -6,3 +6,10 @@ export const fetchInstanceForAccount = async (id) => {
   const { data } = await http.get(url);
   return data;
 };
+
+export const fetchInstanceDetail = async (id) => {
+  const url = `instance/${id}/detail`;
+
+  const { data } = await http.get(url);
+  return data;
+};

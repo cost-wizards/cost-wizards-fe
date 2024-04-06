@@ -1,8 +1,12 @@
 import { useMemo } from "react";
+import Loading from "../components/Loading";
 import Status from "../components/Status";
 import Table from "../components/Table";
+import { useNavigate } from "react-router-dom";
 
 export const AccountDetailInstanceListing = ({ isLoading, data }) => {
+
+  let navigate = useNavigate();
   const columns = useMemo(
     () => [
       {
@@ -40,5 +44,15 @@ export const AccountDetailInstanceListing = ({ isLoading, data }) => {
     [],
   );
 
-  return <Table data={data || []} columns={columns} isLoading={isLoading} />;
+  const onRowClick = (data) => {
+    navigate(`/instance/${data.id}/details`);
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  return (
+    <Table data={data || []} columns={columns} isLoading={isLoading} onRowClick={onRowClick} />
+  );
 };
