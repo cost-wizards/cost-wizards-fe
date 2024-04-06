@@ -16,17 +16,7 @@ const Main = () => {
 	};
 	return (
 		<Layout style={layoutStyle}>
-			<Typography>
-				<Title>Cost Wizards</Title>
-			</Typography>
-			<Flex
-				vertical
-				align='center'
-				justify='center'
-				style={flexLayout}
-			>
-				<Login />
-			</Flex>
+			<Login />
 		</Layout>
 	);
 };

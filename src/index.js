@@ -6,11 +6,16 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 
 import reportWebVitals from './reportWebVitals';
+import AccountSetup from './pages/AccountSetup';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Main />,
+	},
+	{
+		path: '/account-setup',
+		element: <AccountSetup />,
 	},
 ]);
 
