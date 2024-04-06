@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/Header";
 import CardOutlined from "../components/CardOutlined";
 import AccountDetailCards from "../components/AccountDetailCards";
@@ -6,16 +5,24 @@ import AccountDetailCards from "../components/AccountDetailCards";
 import { PlusOutlined } from "@ant-design/icons";
 
 import { Typography, Row, Col, Flex, Button } from "antd";
+
 import { useAccountListQuery } from "../query/useAccountQuery";
 
 const AccountOverview = () => {
   const { Title } = Typography;
 
-  const { data, isLoading } = useAccountListQuery();
-  console.log(data, isLoading);
+  const { isLoading, data } = useAccountListQuery();
 
   const titleStyle = {
     fontWeight: "700",
+  };
+
+  const renderAccountList = () => {
+    if (isLoading) return <div> Loading </div>;
+
+    return data.map((d) => {
+      return <AccountDetailCards data={d} />;
+    });
   };
 
   return (
@@ -73,9 +80,7 @@ const AccountOverview = () => {
           </div>
 
           <Flex align="center" justify="space-between" gap="24px" style={{ marginTop: "32px" }}>
-            <AccountDetailCards />
-            <AccountDetailCards />
-            <AccountDetailCards />
+            {renderAccountList()}
           </Flex>
         </Col>
       </Row>
