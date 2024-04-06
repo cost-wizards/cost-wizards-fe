@@ -99,8 +99,20 @@
 }
 
 .chart-flex {
-  display: flex;
-  gap: 12px;
-  width:100%;
+	display: flex;
+	gap: 12px;
+	width: 100%;
 }
 
+.magic {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+.magic iframe {
+	pointer-events: none;
+}
